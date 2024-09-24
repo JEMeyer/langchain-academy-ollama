@@ -1,7 +1,8 @@
-from langchain_openai import ChatOpenAI
+from langchain_ollama import ChatOllama
 from langgraph.graph import MessagesState
 from langgraph.graph import StateGraph, START, END
 from langgraph.prebuilt import ToolNode, tools_condition
+
 
 # Tool
 def multiply(a: int, b: int) -> int:
@@ -13,13 +14,16 @@ def multiply(a: int, b: int) -> int:
     """
     return a * b
 
+
 # LLM with bound tool
-llm = ChatOpenAI(model="gpt-4o")
+llm = ChatOllama(model="qwen2.5", base_url="http://host.docker.internal:11434")
 llm_with_tools = llm.bind_tools([multiply])
+
 
 # Node
 def tool_calling_llm(state: MessagesState):
     return {"messages": [llm_with_tools.invoke(state["messages"])]}
+
 
 # Build graph
 builder = StateGraph(MessagesState)

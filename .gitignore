@@ -1,5 +1,4 @@
 .ipynb_checkpoints/
-
 .idea/
 
 # Byte-compiled / optimized / DLL files
@@ -133,6 +132,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+lc-academy-env/
 
 # Spyder project settings
 .spyderproject
