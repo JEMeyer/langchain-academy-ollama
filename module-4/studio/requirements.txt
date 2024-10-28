@@ -1,6 +1,6 @@
 langgraph
 langchain-core
 langchain-community
-langchain-openai
+langchain-ollama
 tavily-python
 wikipedia
