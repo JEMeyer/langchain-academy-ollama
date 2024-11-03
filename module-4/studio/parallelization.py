@@ -12,8 +12,14 @@ from langchain_ollama import ChatOllama
 
 from langgraph.graph import StateGraph, START, END
 
+# Default ctx size of 2048 for Ollama will cut off context and not let the llm answer. Particularly
+# if you get a response asking you for the question, the context got cut off.
+CONTEXT_SIZE = 32768
 llm = ChatOllama(
-    model="qwen2.5", temperature=0, base_url="http://host.docker.internal:11434"
+    model="qwen2.5",
+    temperature=0,
+    base_url="http://host.docker.internal:11434",
+    num_ctx=CONTEXT_SIZE,
 )
 
 
